@@ -19,6 +19,132 @@ html {
   );
 }
 
+/* ===========================
+   Light Theme
+   =========================== */
+:root {
+  /* Core Colors */
+  --color-primary: #00005c;
+  --color-on-primary: #ffffff;
+  --color-secondary: #4747d4;
+  --color-on-secondary: #ffffff;
+  --color-tertiary: #000000;
+  --color-on-tertiary: #ffffff;
+
+  /* Background & Surface */
+  --color-background: #fbf9f8;
+  --color-on-background: #1b1c1c;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8f9fa;
+  --color-surface-variant: #e4e2e2;
+  --color-on-surface: #1b1c1c;
+  --color-on-surface-variant: #464651;
+
+  /* Containers */
+  --color-primary-container: #070a61;
+  --color-on-primary-container: #777dcf;
+  --color-secondary-container: #6163ef;
+  --color-on-secondary-container: #fffbff;
+  --color-tertiary-container: #00006e;
+  --color-on-tertiary-container: #7279e5;
+
+  /* Status Colors */
+  --color-error: #c01c28;
+  --color-on-error: #ffffff;
+  --color-success: #2d6a4f;
+  --color-outline: #cecece;
+  --color-border-subtle: #e9ecef;
+
+  /* Elevation */
+  --shadow-overlay: 0px 4px 12px rgba(0, 0, 92, 0.08);
+  --shadow-floating: 0px 8px 24px rgba(0, 0, 92, 0.12);
+
+  /* Typography */
+  --font-family-base: 'Source Sans 3', sans-serif;
+  --font-size-body: 16px;
+  --font-size-headline: 24px;
+  --font-size-display: 48px;
+  --line-height-body: 24px;
+  --line-height-headline: 32px;
+  --line-height-display: 56px;
+
+  /* Radius */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  /* Spacing */
+  --spacing-base: 8px;
+  --spacing-gutter: 24px;
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 32px;
+}
+
+/* ===========================
+   Dark Theme
+   =========================== */
+:root[data-theme='dark'] {
+  /* Core Colors */
+  --color-primary: #bfc2ff;
+  --color-on-primary: #070a61;
+  --color-secondary: #c1c1ff;
+  --color-on-secondary: #08006c;
+  --color-tertiary: #bfc2ff;
+  --color-on-tertiary: #00006e;
+
+  /* Background & Surface */
+  --color-background: #1b1c1c;
+  --color-on-background: #f2f0f0;
+  --color-surface: #303030;
+  --color-surface-muted: #2a2a2a;
+  --color-surface-variant: #464651;
+  --color-on-surface: #f2f0f0;
+  --color-on-surface-variant: #c7c5d3;
+
+  /* Containers */
+  --color-primary-container: #393e8c;
+  --color-on-primary-container: #e0e0ff;
+  --color-secondary-container: #302dbf;
+  --color-on-secondary-container: #e1dfff;
+  --color-tertiary-container: #3239a3;
+  --color-on-tertiary-container: #e0e0ff;
+
+  /* Status Colors */
+  --color-error: #ffdad6;
+  --color-on-error: #93000a;
+  --color-success: #2d6a4f;
+  --color-outline: #c7c5d3;
+  --color-border-subtle: #464651;
+
+  /* Elevation */
+  --shadow-overlay: 0px 4px 12px rgba(255, 255, 255, 0.08);
+  --shadow-floating: 0px 8px 24px rgba(255, 255, 255, 0.12);
+
+  /* Typography (mesma fonte, mas cores adaptadas) */
+  --font-family-base: 'Source Sans 3', sans-serif;
+  --font-size-body: 16px;
+  --font-size-headline: 24px;
+  --font-size-display: 48px;
+  --line-height-body: 24px;
+  --line-height-headline: 32px;
+  --line-height-display: 56px;
+
+  /* Radius */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  /* Spacing */
+  --spacing-base: 8px;
+  --spacing-gutter: 24px;
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 32px;
+}
+
 body {
   // Default the application to a light color theme. This can be changed to
   // `dark` to enable the dark color theme, or to `light dark` to defer to the
@@ -49,4 +175,27 @@ mat-form-field {
 .mat-mdc-unelevated-button {
   border-radius: 4px !important;
   height: 56px !important;
+  color: var(--color-on-secondary) !important;
+  background-color: var(--color-secondary) !important;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+.mat-mdc-button:not(:disabled) {
+  border-radius: 4px !important;
+  height: 56px !important;
+  color: var(--color-secondary) !important;
+  background-color: transparent !important;
+
+  &:hover {
+    background-color: var(--color-on-secondary-container) !important;
+  }
+}
+
+a {
+  color: var(--color-secondary) !important;
+  text-decoration: none;
+  cursor: pointer;
 }

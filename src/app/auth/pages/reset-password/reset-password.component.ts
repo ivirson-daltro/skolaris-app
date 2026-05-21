@@ -1,20 +1,22 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../environments/environment.development';
 import { LoginResponse } from '../../dtos/login-response.dto';
 import { UserCredentials } from '../../dtos/user-credentials.dto';
 import { AuthService } from '../../services/auth.service';
+import { first } from 'rxjs';
+import { GetResetPasswordDto } from '../../dtos/get-reset-password.dto';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-reset-password',
   imports: [
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -25,37 +27,60 @@ import { AuthService } from '../../services/auth.service';
     MatDividerModule,
     RouterLink,
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  templateUrl: './reset-password.component.html',
+  styleUrl: './reset-password.component.scss',
 })
-export class LoginComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly destroyRef$ = inject(DestroyRef);
   private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
 
   form!: FormGroup;
   hidePassword = true;
+  hideConfirmPassword = true;
+  token?: string;
+  resetPasswordInfo?: GetResetPasswordDto;
 
   ngOnInit(): void {
     this.buildForm();
+
+    this.route.queryParams.pipe(takeUntilDestroyed(this.destroyRef$)).subscribe((params) => {
+      this.token = params['token'];
+      if (this.token) {
+        this.getResetPasswordInfo();
+      }
+    });
   }
 
   buildForm(): void {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
-      rememberMe: [false],
+      confirmPassword: ['', [Validators.required]],
     });
+  }
 
-    const savedEmail = localStorage.getItem(environment.APP_REMEMBERED_EMAIL_KEY);
-    if (savedEmail) {
-      this.form.patchValue({ email: savedEmail, rememberMe: true });
-    }
+  getResetPasswordInfo(): void {
+    this.authService
+      .getResetPassword(this.token!)
+      .pipe(first())
+      .subscribe({
+        next: (response: GetResetPasswordDto) => {
+          this.resetPasswordInfo = response;
+        },
+        error: (error) => {
+          // Handle reset password error
+        },
+      });
   }
 
   togglePasswordVisibility(): void {
     this.hidePassword = !this.hidePassword;
+  }
+
+  toggleConfirmPasswordVisibility(): void {
+    this.hideConfirmPassword = !this.hideConfirmPassword;
   }
 
   submit(): void {
@@ -66,31 +91,15 @@ export class LoginComponent implements OnInit {
 
     const userCredentials: UserCredentials = this.form.value;
     this.authService
-      .login(userCredentials)
+      .postResetPassword(this.token!, userCredentials.password)
       .pipe(takeUntilDestroyed(this.destroyRef$))
       .subscribe({
         next: (response: LoginResponse) => {
-          if (this.form.value.rememberMe) {
-            localStorage.setItem(environment.APP_REMEMBERED_EMAIL_KEY, userCredentials.email);
-          } else {
-            localStorage.removeItem(environment.APP_REMEMBERED_EMAIL_KEY);
-          }
-
-          localStorage.setItem(environment.APP_AUTH_TOKEN_KEY, response.accessToken);
-          localStorage.setItem(environment.APP_USER_KEY, JSON.stringify(response.user));
-
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/auth/login']);
         },
         error: (error) => {
           // Handle login error
         },
       });
-  }
-
-  sendWhatsappMessage(): void {
-    const phoneNumber = environment.WHATSAPP_SUPPORT_NUMBER;
-    const message = encodeURIComponent('Olá, preciso de ajuda com o Skolaris App.');
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-    window.open(whatsappUrl, '_blank');
   }
 }
