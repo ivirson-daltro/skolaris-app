@@ -9,12 +9,16 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import {
+  MatFormField,
+  MatLabel,
+  MatPrefix,
+  MatSuffix,
+  MatError,
+} from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { delay, first, tap } from 'rxjs';
 import { ToastService } from '../../../../shared/services/toast.service';
@@ -29,14 +33,16 @@ import { MessageDto } from '../../../../common/dtos/message.dto';
   selector: 'app-reset-password',
   imports: [
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatDividerModule,
+    MatFormField,
+    MatLabel,
+    MatIcon,
+    MatInput,
+    MatButton,
+    MatIconButton,
+    MatPrefix,
+    MatSuffix,
+    MatError,
     RouterLink,
-    MatDividerModule,
     LogoComponent,
   ],
   templateUrl: './reset-password.component.html',

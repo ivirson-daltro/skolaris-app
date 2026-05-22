@@ -16,6 +16,11 @@ import { ThemeService } from '../../services/theme.service';
       height: 64px;
       margin-bottom: 1.5rem;
     }
+
+    .brand-logo {
+      height: 40px;
+      width: auto;
+    }
   `,
 })
 export class LogoComponent {

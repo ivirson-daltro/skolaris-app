@@ -36,7 +36,7 @@ html {
   --color-on-background: #1b1c1c;
   --color-surface: #ffffff;
   --color-surface-muted: #f8f9fa;
-  --color-surface-variant: #e4e2e2;
+  --color-surface-variant: #fbf9f8;
   --color-on-surface: #1b1c1c;
   --color-on-surface-variant: #464651;
 
@@ -54,6 +54,9 @@ html {
   --color-success: #2d6a4f;
   --color-outline: #cecece;
   --color-border-subtle: #e9ecef;
+
+  /* Menu items colors */
+  --color-primary-item: #e1dfff;
 
   /* Elevation */
   --shadow-overlay: 0px 4px 12px rgba(0, 0, 92, 0.08);
@@ -97,9 +100,9 @@ html {
   /* Background & Surface */
   --color-background: #1b1c1c;
   --color-on-background: #f2f0f0;
-  --color-surface: #303030;
+  --color-surface: #0b0f10;
   --color-surface-muted: #2a2a2a;
-  --color-surface-variant: #464651;
+  --color-surface-variant: #101415;
   --color-on-surface: #f2f0f0;
   --color-on-surface-variant: #c7c5d3;
 
@@ -117,6 +120,9 @@ html {
   --color-success: #2d6a4f;
   --color-outline: #c7c5d3;
   --color-border-subtle: #464651;
+
+  /* Menu items colors */
+  --color-primary-item: #004a77;
 
   /* Elevation */
   --shadow-overlay: 0px 4px 12px rgba(255, 255, 255, 0.08);

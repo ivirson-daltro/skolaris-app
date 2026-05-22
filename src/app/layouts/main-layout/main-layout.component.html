@@ -1,1 +1,73 @@
-<p>main-layout works!</p>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened fixedInViewport class="sidenav">
+    <div class="sidenav-brand">
+      <app-logo
+        lightSrc="images/logo.svg"
+        darkSrc="images/logo4.svg"
+        alt="Skolaris"
+        cssClass="brand-logo"
+      />
+    </div>
+
+    <div class="menu-container">
+      <mat-nav-list class="sidenav-nav">
+        @for (item of menuItems; track item.route) {
+          <a mat-list-item [routerLink]="item.route" routerLinkActive="active" class="nav-item">
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+            <span matListItemTitle>{{ item.label }}</span>
+          </a>
+        }
+      </mat-nav-list>
+
+      <div class="sidenav-footer">
+        <button mat-button class="logout-btn" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenav-content">
+    <header class="main-header">
+      <div class="header-left"></div>
+
+      <div class="header-right">
+        <button mat-icon-button class="header-icon-btn" aria-label="Notificações">
+          <mat-icon>notifications</mat-icon>
+        </button>
+
+        <button mat-icon-button class="header-icon-btn" aria-label="Ajuda">
+          <mat-icon>help_outline</mat-icon>
+        </button>
+
+        <app-theme-toggle />
+
+        <mat-divider vertical class="header-divider"></mat-divider>
+
+        <div class="user-profile" [matMenuTriggerFor]="userMenu">
+          <div class="user-text">
+            <span class="user-name">{{ user()?.username }}</span>
+            <span class="user-role">{{ getUserRole() }}</span>
+          </div>
+          <div class="user-avatar">
+            <mat-icon>account_circle</mat-icon>
+          </div>
+        </div>
+
+        <mat-menu #userMenu="matMenu" xPosition="before">
+          <span mat-menu-item disabled class="menu-email">{{ user()?.email }}</span>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

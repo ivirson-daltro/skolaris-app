@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-theme-toggle',
-  imports: [MatIconModule, MatButtonModule],
+  imports: [MatIcon, MatIconButton],
   template: `
     <button
       mat-icon-button
@@ -15,11 +15,13 @@ import { ThemeService } from '../../services/theme.service';
       <mat-icon>{{ themeService.isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
     </button>
   `,
-  styles: [`
-    :host {
-      display: inline-flex;
-    }
-  `],
+  styles: [
+    `
+      :host {
+        display: inline-flex;
+      }
+    `,
+  ],
 })
 export class ThemeToggleComponent {
   protected readonly themeService = inject(ThemeService);

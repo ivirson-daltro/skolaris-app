@@ -1,0 +1,159 @@
+.sidenav-container {
+  height: 100vh;
+}
+
+.mat-drawer {
+  border-radius: 0 !important;
+}
+
+.sidenav {
+  width: 260px;
+  border-right: 1px solid var(--color-border-subtle);
+  background-color: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 88px);
+}
+
+.sidenav-nav {
+  flex: 1;
+  padding-top: 8px;
+}
+
+.nav-item {
+  margin: 4px 12px;
+  color: var(--color-on-surface);
+
+  &.active,
+  &:hover {
+    background-color: var(--color-primary-item);
+  }
+}
+
+.mat-mdc-nav-list .mat-mdc-list-item {
+  border-radius: var(--radius-md);
+  width: auto;
+}
+
+.sidenav-footer {
+  padding: 16px;
+}
+
+.logout-btn {
+  width: 100%;
+  justify-content: flex-start;
+  color: var(--color-error);
+
+  mat-icon {
+    margin-right: 8px;
+  }
+}
+
+.sidenav-content {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background-color: var(--color-surface-variant);
+  border-bottom: 1px solid var(--color-border-subtle);
+  height: 64px;
+  min-height: 64px;
+}
+
+.header-left {
+  flex: 1;
+  max-width: 480px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-icon-btn {
+  color: var(--color-on-surface-variant);
+}
+
+.header-divider {
+  height: 32px;
+  margin: 0 8px;
+  border-color: var(--color-border-subtle);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--color-surface-muted);
+  }
+}
+
+.user-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-on-surface);
+}
+
+.user-role {
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: var(--color-on-surface-variant);
+  letter-spacing: 0.05em;
+}
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    color: var(--color-on-surface-variant);
+  }
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: var(--color-surface-variant);
+}
+
+.menu-email {
+  font-size: 0.875rem;
+  color: var(--color-on-surface-variant);
+}

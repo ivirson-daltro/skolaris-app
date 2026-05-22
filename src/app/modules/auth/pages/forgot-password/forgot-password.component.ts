@@ -1,12 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
+import { MatFormField, MatLabel, MatPrefix } from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
 import { first } from 'rxjs';
 import { MessageDto } from '../../../../common/dtos/message.dto';
@@ -18,12 +16,12 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-forgot-password',
   imports: [
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatDividerModule,
+    MatFormField,
+    MatLabel,
+    MatIcon,
+    MatInput,
+    MatButton,
+    MatPrefix,
     RouterLink,
     LogoComponent,
   ],
