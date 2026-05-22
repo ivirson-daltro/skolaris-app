@@ -1,0 +1,167 @@
+<header class="header">
+  <div class="back-link">
+    <mat-icon>arrow_back</mat-icon>
+    <a routerLink="/schools">ESCOLAS</a>
+  </div>
+  <h1 class="title">Cadastrar Nova Escola</h1>
+  <p class="subtitle">
+    Preencha os dados abaixo para criar uma nova escola. Um convite de acesso será enviado
+    automaticamente para o e-mail do administrador.
+  </p>
+</header>
+
+<main>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col-8">
+        <!-- Instituição -->
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <mat-icon>account_balance</mat-icon>
+              Dados da Escola
+            </h2>
+          </div>
+          <div class="card-content">
+            <div class="row">
+              <div class="col-12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Nome da Escola</mat-label>
+                  <input matInput formControlName="name" />
+                  @if (form.get('name')?.hasError('required')) {
+                    <mat-error>Nome da escola é obrigatório</mat-error>
+                  }
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>CNPJ</mat-label>
+                  <input matInput formControlName="cnpj" />
+                </mat-form-field>
+              </div>
+
+              <div class="col-12 col-md-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Telefone</mat-label>
+                  <input matInput formControlName="phone" />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 col-md-6"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Endereço -->
+        <div class="card" formGroupName="address">
+          <div class="card-header">
+            <h2 class="card-title">
+              <mat-icon>location_on</mat-icon>
+              Endereço
+            </h2>
+          </div>
+          <div class="card-content">
+            <div class="row">
+              <div class="col-12 col-md-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>CEP</mat-label>
+                  <input matInput formControlName="zipCode" />
+                </mat-form-field>
+              </div>
+
+              <div class="col-12 col-md-8">
+                <mat-form-field appearance="outline">
+                  <mat-label>Rua</mat-label>
+                  <input matInput formControlName="street" />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 col-md-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Número</mat-label>
+                  <input matInput formControlName="number" />
+                </mat-form-field>
+              </div>
+
+              <div class="col-12 col-md-8">
+                <mat-form-field appearance="outline">
+                  <mat-label>Complemento</mat-label>
+                  <input matInput formControlName="complement" />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12 col-md-5">
+                <mat-form-field appearance="outline">
+                  <mat-label>Bairro</mat-label>
+                  <input matInput formControlName="neighborhood" />
+                </mat-form-field>
+              </div>
+
+              <div class="col-12 col-md-5">
+                <mat-form-field appearance="outline">
+                  <mat-label>Cidade</mat-label>
+                  <input matInput formControlName="city" />
+                </mat-form-field>
+              </div>
+
+              <div class="col-12 col-md-2">
+                <mat-form-field appearance="outline">
+                  <mat-label>Estado</mat-label>
+                  <mat-select>
+                    @for (state of states; track state) {
+                      <mat-option [value]="state">{{ state }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <!-- ... -->
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">
+              <mat-icon>verified_user</mat-icon>
+              Administrador
+            </h2>
+            <h3 class="card-subtitle mt-2">
+              Defina o responsável direto por esta nova unidade. Ele receberá os dados de login via
+              e-mail.
+            </h3>
+          </div>
+          <div class="card-content" [formGroup]="admin">
+            <mat-form-field appearance="outline">
+              <mat-label>Nome do administrador</mat-label>
+              <input matInput formControlName="name" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>E-mail do administrador</mat-label>
+              <input matInput formControlName="email" type="email" />
+            </mat-form-field>
+
+            <div class="create-school-tips mt-4">
+              <div class="icon">
+                <mat-icon>info_outline</mat-icon>
+              </div>
+              <p class="m-0">
+                Ao concluir, um sistema de banco de dados exclusivo será provisionado para esta
+                unidade em nossos servidores seguros.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</main>

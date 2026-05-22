@@ -1,0 +1,52 @@
+.header {
+  margin-bottom: var(--spacing-margin-desktop);
+
+  .back-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.5rem;
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-size: 14px;
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--color-on-surface-variant);
+  }
+}
+
+.create-school-tips {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  margin-bottom: 0.5rem;
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 300;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-outline);
+  padding: var(--spacing-margin-mobile);
+  background-color: var(--color-surface-muted);
+
+  mat-icon {
+    margin-top: 4px;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}

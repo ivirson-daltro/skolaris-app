@@ -50,9 +50,10 @@ export class MainLayoutComponent {
 
   readonly menuItems = [
     { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
+    { label: 'Escolas', icon: 'account_balance', route: '/schools' },
     { label: 'Alunos', icon: 'groups', route: '/students' },
-    { label: 'Professores', icon: 'school', route: '/faculty' },
-    { label: 'Disciplinas', icon: 'menu_book', route: '/academics' },
+    { label: 'Professores', icon: 'school', route: '/teachers' },
+    { label: 'Disciplinas', icon: 'menu_book', route: '/subjects' },
     { label: 'Configurações', icon: 'settings', route: '/settings' },
   ];
 

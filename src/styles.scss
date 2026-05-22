@@ -52,11 +52,22 @@ html {
   --color-error: #c01c28;
   --color-on-error: #ffffff;
   --color-success: #2d6a4f;
-  --color-outline: #cecece;
+  --color-outline: #dbdbdb;
   --color-border-subtle: #e9ecef;
 
   /* Menu items colors */
   --color-primary-item: #e1dfff;
+
+  /* Gray */
+  --color-gray-100: #f8f9fa;
+  --color-gray-200: #e9ecef;
+  --color-gray-300: #dee2e6;
+  --color-gray-400: #ced4da;
+  --color-gray-500: #adb5bd;
+  --color-gray-600: #6c757d;
+  --color-gray-700: #495057;
+  --color-gray-800: #343a40;
+  --color-gray-900: #212529;
 
   /* Elevation */
   --shadow-overlay: 0px 4px 12px rgba(0, 0, 92, 0.08);
@@ -118,11 +129,22 @@ html {
   --color-error: #ffdad6;
   --color-on-error: #93000a;
   --color-success: #2d6a4f;
-  --color-outline: #c7c5d3;
+  --color-outline: #3a3f40;
   --color-border-subtle: #464651;
 
   /* Menu items colors */
   --color-primary-item: #004a77;
+
+  /* Gray */
+  --color-gray-100: #212529;
+  --color-gray-200: #343a40;
+  --color-gray-300: #495057;
+  --color-gray-400: #6c757d;
+  --color-gray-500: #adb5bd;
+  --color-gray-600: #ced4da;
+  --color-gray-700: #dee2e6;
+  --color-gray-800: #e9ecef;
+  --color-gray-900: #f8f9fa;
 
   /* Elevation */
   --shadow-overlay: 0px 4px 12px rgba(255, 255, 255, 0.08);
@@ -179,6 +201,33 @@ body {
 
 mat-form-field {
   width: 100%;
+  margin-bottom: 6px;
+}
+
+.mdc-text-field--outlined {
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: var(--color-outline) !important;
+  }
+
+  &:hover .mdc-notched-outline__leading,
+  &:hover .mdc-notched-outline__notch,
+  &:hover .mdc-notched-outline__trailing {
+    border-color: var(--color-outline) !important;
+  }
+
+  &.mdc-text-field--focused .mdc-notched-outline__leading,
+  &.mdc-text-field--focused .mdc-notched-outline__notch,
+  &.mdc-text-field--focused .mdc-notched-outline__trailing {
+    border-color: var(--color-primary) !important;
+  }
+
+  &.mdc-text-field--invalid .mdc-notched-outline__leading,
+  &.mdc-text-field--invalid .mdc-notched-outline__notch,
+  &.mdc-text-field--invalid .mdc-notched-outline__trailing {
+    border-color: var(--color-error) !important;
+  }
 }
 
 .mat-mdc-unelevated-button {
@@ -210,5 +259,40 @@ a {
     background-color: transparent !important;
     box-shadow: none !important;
     padding: 0 !important;
+  }
+}
+
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-surface);
+  border: 1px solid var(--color-border-subtle);
+  margin-bottom: var(--spacing-gutter);
+
+  .card-header {
+    padding: var(--spacing-margin-mobile);
+    background-color: var(--color-gray-100);
+    border-top-left-radius: var(--radius-lg);
+    border-top-right-radius: var(--radius-lg);
+    border-bottom: 1px solid var(--color-border-subtle);
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 20px;
+      color: var(--color-on-surface-variant);
+      margin: 0;
+    }
+
+    .card-subtitle {
+      margin: 0;
+      font-size: 14px;
+      color: var(--color-on-surface-variant);
+    }
+  }
+
+  .card-content {
+    padding: var(--spacing-margin-mobile);
   }
 }
