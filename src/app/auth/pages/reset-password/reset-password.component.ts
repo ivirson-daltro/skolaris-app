@@ -1,19 +1,25 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink, Router, ActivatedRoute } from '@angular/router';
-import { environment } from '../../../../environments/environment.development';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { first } from 'rxjs';
+import { GetResetPasswordDto } from '../../dtos/get-reset-password.dto';
 import { LoginResponse } from '../../dtos/login-response.dto';
 import { UserCredentials } from '../../dtos/user-credentials.dto';
 import { AuthService } from '../../services/auth.service';
-import { first } from 'rxjs';
-import { GetResetPasswordDto } from '../../dtos/get-reset-password.dto';
 
 @Component({
   selector: 'app-reset-password',
@@ -26,6 +32,7 @@ import { GetResetPasswordDto } from '../../dtos/get-reset-password.dto';
     MatCheckboxModule,
     MatDividerModule,
     RouterLink,
+    MatDividerModule,
   ],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss',
@@ -55,10 +62,16 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   buildForm(): void {
-    this.form = this.fb.group({
-      password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]],
-    });
+    this.form = this.fb.group(
+      {
+        password: [
+          '',
+          [Validators.required, Validators.minLength(8), Validators.pattern(/(?=.*\d)/)],
+        ],
+        confirmPassword: ['', [Validators.required]],
+      },
+      { validators: this.passwordsMatchValidator },
+    );
   }
 
   getResetPasswordInfo(): void {
@@ -73,6 +86,16 @@ export class ResetPasswordComponent implements OnInit {
           // Handle reset password error
         },
       });
+  }
+
+  private passwordsMatchValidator(group: AbstractControl): ValidationErrors | null {
+    const password = group.get('password')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+
+    if (password && confirmPassword && password !== confirmPassword) {
+      return { passwordsMismatch: true };
+    }
+    return null;
   }
 
   togglePasswordVisibility(): void {
