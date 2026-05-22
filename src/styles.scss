@@ -146,11 +146,6 @@ html {
 }
 
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
-
   // Set a default background, font and text colors for the application using
   // Angular Material's system-level CSS variables. Learn more about these
   // variables at https://material.angular.dev/guide/system-variables
@@ -161,6 +156,14 @@ body {
   // Reset the user agent margin.
   margin: 0;
   height: 100%;
+}
+
+:root body {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] body {
+  color-scheme: dark;
 }
 
 * {
@@ -188,14 +191,18 @@ mat-form-field {
   height: 56px !important;
   color: var(--color-secondary) !important;
   background-color: transparent !important;
-
-  &:hover {
-    background-color: var(--color-on-secondary-container) !important;
-  }
 }
 
 a {
   color: var(--color-secondary) !important;
   text-decoration: none;
   cursor: pointer;
+}
+
+.toast-panel {
+  &.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
 }

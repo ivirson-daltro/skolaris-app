@@ -1,0 +1,11 @@
+.app-root-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.theme-toggle-wrapper {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 10000;
+}

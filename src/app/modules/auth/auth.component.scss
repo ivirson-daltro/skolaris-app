@@ -1,0 +1,60 @@
+.auth-container {
+  display: grid;
+  grid-template-columns: 45% 1fr;
+  height: 100vh;
+
+  .left-panel {
+    background-color: var(--color-background);
+    padding: 0 10rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .right-panel {
+    background-image: url('/images/alunos2.png');
+    background-size: cover;
+    background-position: center;
+
+    .overlay {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      // Gradiente de 0% transparente a 100% azul escuro com opacidade de 0.7
+      //   background-color: #000080bb;
+      background: linear-gradient(to bottom, #00008046 0%, #000080ff 85%, #000080ff 100%);
+    }
+
+    .overlay-content {
+      height: 100%;
+      width: 100%;
+      padding: 2rem 7rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: start;
+
+      .overlay-line {
+        width: 100px;
+        height: 4px;
+        background-color: #fff;
+        margin-bottom: 2rem;
+      }
+
+      .overlay-title {
+        font-weight: 600;
+        font-size: 3rem;
+        color: #fff;
+        margin-bottom: 0.5rem;
+        line-height: 1;
+        margin-bottom: 1.5rem;
+      }
+
+      .overlay-subtitle {
+        font-size: 1.25rem;
+        color: #ccc;
+        line-height: 1.2;
+      }
+    }
+  }
+}
