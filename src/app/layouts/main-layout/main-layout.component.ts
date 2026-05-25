@@ -10,6 +10,7 @@ import { environment } from '../../../environments/environment';
 import { UserRoles } from '../../common/constants/user-roles.enum';
 import { LogoComponent } from '../../shared/components/logo/logo.component';
 import { ThemeToggleComponent } from '../../shared/components/theme-toggle/theme-toggle.component';
+import { AuthService } from '../../modules/auth/services/auth.service';
 
 interface UserData {
   username: string;
@@ -45,6 +46,7 @@ interface UserData {
   styleUrl: './main-layout.component.scss',
 })
 export class MainLayoutComponent {
+  private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
   protected readonly user = signal<UserData | null>(this.#loadUser());
 
@@ -62,9 +64,7 @@ export class MainLayoutComponent {
   }
 
   logout(): void {
-    localStorage.removeItem(environment.APP_AUTH_TOKEN_KEY);
-    localStorage.removeItem(environment.APP_USER_KEY);
-    this.router.navigate(['/auth/login']);
+    this.authService.logout();
   }
 
   #loadUser(): UserData | null {

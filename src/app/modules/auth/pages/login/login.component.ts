@@ -9,7 +9,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { first } from 'rxjs';
-import { environment } from '../../../../../environments/environment.development';
+import { environment } from '../../../../../environments/environment';
 import { LogoComponent } from '../../../../shared/components/logo/logo.component';
 import { ToastService } from '../../../../shared/services/toast.service';
 import { LoginResponse } from '../../dtos/login-response.dto';

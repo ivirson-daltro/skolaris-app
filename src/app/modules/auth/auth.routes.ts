@@ -23,6 +23,13 @@ export const AUTH_ROUTES: Routes = [
             (m) => m.ResetPasswordComponent,
           ),
       },
+      {
+        path: 'accept-invite',
+        loadComponent: () =>
+          import('./pages/accept-invite/accept-invite.component').then(
+            (m) => m.AcceptInviteComponent,
+          ),
+      },
     ],
   },
   {

@@ -1,1 +1,86 @@
-<h1 class="title">Escolas</h1>
+<header class="header">
+  <h1 class="title">Escolas</h1>
+  <p class="subtitle">Veja e gerencie todas as escolas cadastradas.</p>
+</header>
+
+<main>
+  <div class="row">
+    <div class="col-12">
+      <!-- Instituição -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">
+            <mat-icon fontIcon="filter_alt" class="me-2"></mat-icon> Filtros
+          </h2>
+        </div>
+        <div class="card-content pt-4">
+          <div class="row">
+            <div class="col-12 col-md-3">
+              <mat-form-field appearance="outline" class="mb-0">
+                <mat-label>Nome</mat-label>
+                <input matInput [(ngModel)]="name" />
+              </mat-form-field>
+            </div>
+
+            <div class="col-12 col-md-9">
+              <button mat-flat-button class="w-20" type="submit">
+                Buscar
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title"><mat-icon fontIcon="school" class="me-2"></mat-icon> Escolas</h2>
+        </div>
+        <div class="card-content pt-4">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <!-- ID Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome da escola</th>
+              <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="plan">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Plano</th>
+              <td mat-cell *matCellDef="let row">{{ row.plan }}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="createdAt">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Criado em</th>
+              <td mat-cell *matCellDef="let row">{{ row.createdAt | date: 'dd/MM/yyyy' }}</td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Ações</th>
+              <td mat-cell *matCellDef="let row">
+                <button mat-icon-button [routerLink]="['/schools', row.id]">
+                  <mat-icon>edit</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">Nenhuma escola encontrada.</td>
+            </tr>
+          </table>
+
+          <mat-paginator
+            [pageSizeOptions]="[5, 10, 25, 100]"
+            aria-label="Select page of users"
+          ></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

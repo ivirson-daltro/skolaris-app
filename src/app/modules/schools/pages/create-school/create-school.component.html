@@ -163,5 +163,13 @@
         </div>
       </div>
     </div>
+
+    <div class="d-flex justify-content-end gap-2">
+      <button matButton class="w-20" routerLink="/schools">Cancelar</button>
+      <button mat-flat-button class="w-20" type="submit" [disabled]="form.invalid">
+        Criar Escola e Enviar convite
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
   </form>
 </main>

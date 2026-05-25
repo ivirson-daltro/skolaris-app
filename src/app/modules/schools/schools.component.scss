@@ -1,0 +1,14 @@
+.header {
+  margin-bottom: var(--spacing-margin-desktop);
+
+  .title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--color-on-surface-variant);
+  }
+}

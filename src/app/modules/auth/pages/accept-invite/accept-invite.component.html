@@ -1,0 +1,28 @@
+<div class="invite-container">
+  <app-logo
+    lightSrc="images/logo.svg"
+    darkSrc="images/logo4.svg"
+    alt="Skolaris Logo"
+    cssClass="logo"
+  />
+
+  <div class="invite-card">
+    <div class="invite-header">
+      <mat-icon class="invite-icon">mail</mat-icon>
+      <h1 class="invite-title">Você foi convidado!</h1>
+      <p class="invite-text">
+        Você recebeu um convite para gerenciar uma escola no Skolaris. Clique no botão abaixo para
+        aceitar e começar.
+      </p>
+    </div>
+
+    <button mat-flat-button class="w-100" (click)="acceptInvite()" [disabled]="!token">
+      <mat-icon matButtonIcon>check_circle</mat-icon>
+      <span>Aceitar convite e acessar</span>
+    </button>
+
+    <div class="invite-footer">
+      <a routerLink="/auth/login">Já tem uma conta? Faça login</a>
+    </div>
+  </div>
+</div>
