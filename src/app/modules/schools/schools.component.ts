@@ -1,24 +1,16 @@
+import { DatePipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { RouterLink } from '@angular/router';
 import { first } from 'rxjs';
 import { SchoolDto } from './dtos/school.dto';
 import { SchoolsService } from './services/schools.service';
-import { FormsModule } from '@angular/forms';
-import { MatInput } from '@angular/material/input';
-import { MatButton } from '@angular/material/button';
-import {
-  MatTable,
-  MatHeaderCellDef,
-  MatCellDef,
-  MatHeaderRowDef,
-  MatRowDef,
-  MatTableDataSource,
-  MatTableModule,
-} from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { DatePipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-schools',
@@ -29,6 +21,7 @@ import { RouterLink } from '@angular/router';
     MatInput,
     FormsModule,
     MatButton,
+    MatIconButton,
     MatTableModule,
     MatPaginator,
     DatePipe,
@@ -41,7 +34,7 @@ export class SchoolsComponent implements OnInit {
   private readonly schoolsService = inject(SchoolsService);
 
   displayedColumns: string[] = ['name', 'plan', 'createdAt', 'actions'];
-  dataSource!: MatTableDataSource<SchoolDto>;
+  dataSource: MatTableDataSource<SchoolDto> = new MatTableDataSource<SchoolDto>([]);
 
   name = '';
 
@@ -54,7 +47,7 @@ export class SchoolsComponent implements OnInit {
       .findAll()
       .pipe(first())
       .subscribe((response) => {
-        this.dataSource = new MatTableDataSource(response.data);
+        this.dataSource.data = response.data;
       });
   }
 }
